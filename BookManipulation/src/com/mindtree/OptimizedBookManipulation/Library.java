@@ -1,28 +1,27 @@
 /**
  * 
  */
-package com.mindtree.BookManipulation.service.impl;
+package com.mindtree.OptimizedBookManipulation;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 import com.mindtree.BookManipulation.entities.Book;
-import com.mindtree.BookManipulation.service.BookService;
 
 /**
  * @author M1057685
- *
+ * @author Swapnil Dutta
  */
-public class BookServiceImpl implements BookService {
+public class Library {
+	static Scanner in = new Scanner(System.in);
 	ArrayList<Book> books = new ArrayList<Book>();
 
-	@Override
 	public void addBook(Book book) {
 		books.add(book);
 		System.out.println("Books added successfully");
 	}
 
-	@Override
 	public boolean isEmpty() {
 		boolean result;
 		if (books.size() > 0)
@@ -32,19 +31,16 @@ public class BookServiceImpl implements BookService {
 		return result;
 	}
 
-	@Override
 	public ArrayList<Book> viewAllBooks() {
 		return books;
 	}
 
-	@Override
 	public ArrayList<Book> viewBooksByAuthor(String author) {
 		ArrayList<Book> book = (ArrayList<Book>) books.stream().filter(t -> t.getAuthor().equals(author))
 				.collect(Collectors.toList());
 		return book;
 	}
 
-	@Override
 	public int countNumberOfBooks(String bookName) {
 		int count = 0;
 		for (Book book : books) {
@@ -53,5 +49,4 @@ public class BookServiceImpl implements BookService {
 		}
 		return count;
 	}
-
 }
